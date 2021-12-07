@@ -37,6 +37,7 @@
       
       <button class="on-button" id = "onBtn" >LED ON</button>
       <button class="off-button" id = "offBtn" >LED OFF</button>
+      <img id="img" src=off.png>
 
       <script type="module"> //모듈추가하기
       // Import the functions you need from the SDKs you need
@@ -78,15 +79,17 @@
         var OffButton = document.getElementById("offBtn");
         OffButton.addEventListener("click", offBtnClick, false);
 
-        //파이어베이스 DB의 LED값이 "ON" 켜짐
+        //파이어베이스 DB의 LED값이 "ON" 켜짐, 이미지변경
         function onBtnClick(event) {
           set(ref(db, 'LED_STATUS'), 'ON');
+          document.getElementById("img").src = "on.png"
           console.log("LED ON");
         }
 
-        //파이어베이스 DB의 LED값이 "OFF" 꺼짐
+        //파이어베이스 DB의 LED값이 "OFF" 꺼짐, 이미지변경
         function offBtnClick() {
           set(ref(db, 'LED_STATUS'), 'OFF');
+          document.getElementById("img").src = "off.png"
           console.log("LED OFF");
         }
 
