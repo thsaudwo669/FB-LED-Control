@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     Button onButton;
     Button offButton;
     TextView textView;
+    //이미지 파일은 res/drawable 폴더안에 저장
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         onButton = findViewById(R.id.btn01);
         offButton = findViewById(R.id.btn02);
         textView = findViewById(R.id.textView);
+        imageView = findViewById(R.id.imageView);
         setTitle(("LED Remote Control"));
 
         // 파이어베이스 연결
@@ -61,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
                 textView.setBackgroundColor(Color.RED);
                 //데이터베이스 변경 "ON"
                 myRef.setValue("ON");
+                //ON이미지 변경
+                imageView.setImageResource(R.drawable.on);
+
+
             }
         });
 
@@ -70,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
                 textView.setBackgroundColor(Color.GRAY);
                 //데이터베이쓰 변경 "OFF"
                 myRef.setValue("OFF");
+                //OFF이미지 변경
+                imageView.setImageResource(R.drawable.off);
             }
         });
     }
