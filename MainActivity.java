@@ -28,24 +28,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //찾아오기
         onButton = findViewById(R.id.btn01);
         offButton = findViewById(R.id.btn02);
         textView = findViewById(R.id.textView);
         setTitle(("LED Remote Control"));
 
-        // Write a message to the database
+        // 파이어베이스 연결
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("LED_STATUS");
 
         myRef.setValue("Hello, World!");
         textView.setText(myRef.getKey());
 
-        // read from the Database, addValue Event Listenning
+        // 데이터베이스 불러오기
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String ledState = (String) dataSnapshot.getValue();
-                //String value = dataSnapshot.getValue(String.class);
                 textView.setText("LED is " + ledState);
             }
 
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 textView.setBackgroundColor(Color.RED);
-                // write to the Database
+                //데이터베이스 변경 "ON"
                 myRef.setValue("ON");
             }
         });
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 textView.setBackgroundColor(Color.GRAY);
-                // write to the Database
+                //데이터베이쓰 변경 "OFF"
                 myRef.setValue("OFF");
             }
         });
